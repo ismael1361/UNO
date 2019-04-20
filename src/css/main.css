@@ -50,11 +50,6 @@ body{margin: 0px; padding: 0px; user-select: none;}
   opacity: 0.1;
 }
 
-@media only screen and (max-width: 600px) {
-  body {
-  }
-}
-
 .card{
   position: absolute;
   width: var(--card_width);
