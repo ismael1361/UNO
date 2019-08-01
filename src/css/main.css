@@ -156,12 +156,12 @@ body{margin: 0px; padding: 0px; user-select: none;}
   width: calc(var(--card_width) * 0.1);
   height: calc(var(--card_width) * 0.1);
   border-radius: 50%;
-  border: solid 3px;
+  border: solid calc(var(--card_width) * 0.03);
   border-top-color: var(--red);
   border-left-color: var(--yellow);
   border-right-color: var(--green);
   border-bottom-color: var(--blue);
-  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.3), inset 0px 0px 6px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3), inset 0px 0px 4px 0px rgba(0,0,0,0.2);
 }
 
 .card:not(.back) > div{
@@ -207,7 +207,7 @@ body{margin: 0px; padding: 0px; user-select: none;}
   width: var(--back_circle);
   height: var(--back_circle);
   border-radius: 50%;
-  border: solid 7px;
+  border: solid calc(var(--card_width) * 0.07);
   border-top-color: var(--red);
   border-left-color: var(--yellow);
   border-right-color: var(--green);
@@ -263,7 +263,7 @@ body{margin: 0px; padding: 0px; user-select: none;}
   width: var(--back_circle);
   height: var(--back_circle);
   border-radius: 50%;
-  border: solid 7px;
+  border: solid calc(var(--card_width) * 0.07);
   border-top-color: var(--red);
   border-left-color: var(--yellow);
   border-right-color: var(--green);
@@ -637,25 +637,25 @@ body{margin: 0px; padding: 0px; user-select: none;}
 
 .playerIndicator[player="1"]{
   left: 50%;
-  bottom: 150px;
+  bottom: calc(var(--card_height) + 22px);
   transform: translate(-50%, 0px) rotate(0deg);
 }
 
 .playerIndicator[player="2"]{
   top: 50%;
-  left: 120px;
+  left: calc(var(--card_height) + 12px);
   transform: translate(0px, -50%) rotate(90deg);
 }
 
 .playerIndicator[player="3"]{
-  top: 120px;
+  top: calc(var(--card_height) + 14px);
   left: 50%;
   transform: translate(-50%, 0px) rotate(180deg);
 }
 
 .playerIndicator[player="4"]{
   top: 50%;
-  right: 120px;
+  right: calc(var(--card_height) + 12px);
   transform: translate(0px, -50%) rotate(270deg);
 }
 

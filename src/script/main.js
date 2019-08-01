@@ -17,6 +17,7 @@ var UNO = (function(main){
   self.colorChangeDom = null;
   self.isUnoShout = false;
   self.isWinner = false;
+  self.isNewGame = false;
 
   self.workspaceDom = function(el){
     self.element = js(el);
@@ -46,6 +47,7 @@ var UNO = (function(main){
     self.colorChangeDom = null;
     self.isUnoShout = false;
     self.isWinner = false;
+    self.isNewGame = false;
     self.element.html("");
   }
 
@@ -286,27 +288,27 @@ var UNO = (function(main){
           }
         }
         
-        var l = cards.length, d = j-(l/2), deg = 25;
+        var l = cards.length, 
+            d = j-(l/2), 
+            deg = 20, 
+            margin = 45,
+            maxW = 300, maxH = 200;
 
         var f = function(x){
           x = x*5;
           return (((x*0.6)**2)+0.8)*(1);
         }
 
-        var left = (35/l);
-        left = left < 3 ? left > -3 ? left : -3 : 3;
-        left = (d*left+48);
-
         var s = self.element.width()*0.5;
-        s = s > 300 ? 300 : s;
+        s = s > maxW ? maxW : s;
         s = s/l;
-        s = s < 30 ? s : 30;
+        s = s < margin ? s : margin;
         var left = (d*s)+(-50);
 
         s = self.element.height()*0.5;
-        s = s > 200 ? 200 : s;
+        s = s > maxH ? maxH : s;
         s = s/l;
-        s = s < 30 ? s : 30;
+        s = s < margin ? s : margin;
         var top = (d*s)+(-50);
 
         var r = (j*((deg*2)/l))-deg*0.8;
@@ -669,6 +671,8 @@ var UNO = (function(main){
 
     this.draw();
 
+    self.isNewGame = true;
+
     if(self.turnPlayer != 0){
       setTimeout(function(){
         self.IA(self.turnPlayer);
@@ -714,7 +718,20 @@ var UNO = (function(main){
   this.workspaceDom(el);
   var s = this;
 
+  this.sizeCard = [90, 128];
+
+  var updateSize = function(){
+    var size = window.innerHeight > window.innerWidth ?  window.innerWidth :  window.innerHeight;
+    s.sizeCard[0] = Math.floor(size / 6.94);
+    s.sizeCard[1] = Math.floor(s.sizeCard[0] / 0.70);
+    document.documentElement.style.setProperty('--card_width', s.sizeCard[0]+'px');
+    document.documentElement.style.setProperty('--card_height', s.sizeCard[1]+'px');
+  }
+  updateSize();
+
   window.onresize = function(){
+    updateSize();
+    if(s.isNewGame == false){return;}
     s.update();
   };
 }));
